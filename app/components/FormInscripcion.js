@@ -5,21 +5,25 @@ import { useRouter } from 'next/navigation';
 function validarEmail(e) {
   return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e);
 }
-function validarNombre(n) { return n.trim().length >= 2; }
+function validarTexto(n) { return n.trim().length >= 2; }
 
 const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
   const router = useRouter();
   const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [errNombre, setErrNombre] = useState(false);
+  const [errApellido, setErrApellido] = useState(false);
   const [errEmail, setErrEmail] = useState(false);
   const [enviando, setEnviando] = useState(false);
 
   async function handleSubmit() {
     setErrNombre(false);
+    setErrApellido(false);
     setErrEmail(false);
     let ok = true;
-    if (!validarNombre(nombre)) { setErrNombre(true); ok = false; }
+    if (!validarTexto(nombre)) { setErrNombre(true); ok = false; }
+    if (!validarTexto(apellido)) { setErrApellido(true); ok = false; }
     if (!validarEmail(email)) { setErrEmail(true); ok = false; }
     if (!ok) return;
 
@@ -28,11 +32,18 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
       await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, email }),
+        body: JSON.stringify({ nombre: nombre.trim(), apellido: apellido.trim(), email }),
       });
     } catch (e) { console.log(e); }
     router.push('/gracias');
   }
+
+  const inputStyle = (err) => ({
+    width: '100%', padding: '12px 16px', borderRadius: '8px',
+    border: `1.5px solid ${err ? '#e74c3c' : 'var(--lila-md)'}`,
+    fontSize: '15px', outline: 'none', fontFamily: "'Lato', sans-serif",
+    background: '#fff', color: '#111', boxSizing: 'border-box',
+  });
 
   return (
     <section ref={ref} style={{ background: 'var(--lila-lt)', borderTop: '1px solid var(--lila-md)', padding: '64px 0' }}>
@@ -56,48 +67,41 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
             Reservá tu lugar
           </h3>
           <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px', lineHeight: 1.6 }}>
-            Completá tus datos y te contactamos con los detalles de pago.
+            Completá tus datos y a continuación vas a poder abonar tu inscripción.
           </p>
 
+          {/* Nombre */}
           <div style={{ marginBottom: '14px' }}>
-            <input
-              type="text"
-              placeholder="Tu nombre"
-              autoComplete="name"
-              value={nombre}
-              onChange={e => setNombre(e.target.value)}
-              onBlur={() => { if (nombre.trim()) setErrNombre(!validarNombre(nombre)); }}
-              style={{
-                width: '100%', padding: '12px 16px', borderRadius: '8px',
-                border: `1.5px solid ${errNombre ? '#e74c3c' : 'var(--lila-md)'}`,
-                fontSize: '15px', outline: 'none', fontFamily: "'Lato', sans-serif",
-                background: '#fff', color: '#111', boxSizing: 'border-box',
-              }}
+            <input type="text" placeholder="Nombre" autoComplete="given-name"
+              value={nombre} onChange={e => setNombre(e.target.value)}
+              onBlur={() => { if (nombre.trim()) setErrNombre(!validarTexto(nombre)); }}
+              style={inputStyle(errNombre)}
             />
-            {errNombre && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Por favor ingresá tu nombre</span>}
+            {errNombre && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá tu nombre</span>}
           </div>
 
+          {/* Apellido */}
+          <div style={{ marginBottom: '14px' }}>
+            <input type="text" placeholder="Apellido" autoComplete="family-name"
+              value={apellido} onChange={e => setApellido(e.target.value)}
+              onBlur={() => { if (apellido.trim()) setErrApellido(!validarTexto(apellido)); }}
+              style={inputStyle(errApellido)}
+            />
+            {errApellido && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá tu apellido</span>}
+          </div>
+
+          {/* Email */}
           <div style={{ marginBottom: '20px' }}>
-            <input
-              type="email"
-              placeholder="Tu email"
-              autoComplete="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+            <input type="email" placeholder="Email" autoComplete="email"
+              value={email} onChange={e => setEmail(e.target.value)}
               onBlur={() => { if (email.trim()) setErrEmail(!validarEmail(email)); }}
-              style={{
-                width: '100%', padding: '12px 16px', borderRadius: '8px',
-                border: `1.5px solid ${errEmail ? '#e74c3c' : 'var(--lila-md)'}`,
-                fontSize: '15px', outline: 'none', fontFamily: "'Lato', sans-serif",
-                background: '#fff', color: '#111', boxSizing: 'border-box',
-              }}
+              style={inputStyle(errEmail)}
             />
             {errEmail && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá un email válido</span>}
           </div>
 
           <button
-            onClick={handleSubmit}
-            disabled={enviando}
+            onClick={handleSubmit} disabled={enviando}
             style={{
               width: '100%', padding: '15px', background: 'var(--amarillo)', color: '#111',
               border: 'none', borderRadius: '8px', fontFamily: "'Montserrat', sans-serif",
@@ -105,11 +109,11 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
               opacity: enviando ? 0.7 : 1,
             }}
           >
-            {enviando ? 'Enviando...' : '→ Quiero inscribirme'}
+            {enviando ? 'Un momento...' : '→ Quiero inscribirme'}
           </button>
 
           <p style={{ fontSize: '12px', color: '#aaa', textAlign: 'center', marginTop: '14px' }}>
-            🔒 Sin spam · Te contactamos a la brevedad
+            🔒 Tus datos están seguros · El pago es en el siguiente paso
           </p>
           <p style={{ fontSize: '12px', color: 'var(--lila)', textAlign: 'center', marginTop: '6px', fontWeight: 700 }}>
             ⚠ Cupos limitados · Inicio Miércoles 17 de Junio

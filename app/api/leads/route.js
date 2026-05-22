@@ -24,14 +24,14 @@ function checkAuth(request) {
 
 export async function POST(request) {
   try {
-    const { nombre, email } = await request.json();
+    const { nombre, apellido, email } = await request.json();
     if (!nombre?.trim() || !email?.trim()) {
       return Response.json({ error: 'Datos incompletos' }, { status: 400 });
     }
     const db = getPool();
     const result = await db.query(
-      'INSERT INTO leads_formacion (nombre, email) VALUES ($1, $2) RETURNING *',
-      [nombre.trim(), email.trim().toLowerCase()]
+      'INSERT INTO leads_formacion (nombre, apellido, email) VALUES ($1, $2, $3) RETURNING *',
+      [nombre.trim(), (apellido || '').trim(), email.trim().toLowerCase()]
     );
     return Response.json(result.rows[0], { status: 201 });
   } catch (e) {
