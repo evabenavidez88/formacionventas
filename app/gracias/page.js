@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // Cutoff: 4 de junio 23:59 ART (UTC-3) = 5 de junio 02:59 UTC
-const CUTOFF = new Date('2025-06-05T03:00:00Z');
+const CUTOFF = new Date('2026-06-05T03:00:00Z');
 const LINK_30OFF = 'https://mpago.la/1Aichrk';
 const LINK_FULL  = 'https://mpago.la/24VkqZM';
 

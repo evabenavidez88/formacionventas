@@ -22,7 +22,7 @@ function useCountdown(target) {
 }
 
 export default function Precio({ onCTA }) {
-  const { d, h, m, s } = useCountdown('2025-06-04T23:59:59-03:00');
+  const { d, h, m, s } = useCountdown('2026-06-04T23:59:59-03:00');
 
   const incluye = [
     '3 encuentros en vivo — 6 horas de entrenamiento',
