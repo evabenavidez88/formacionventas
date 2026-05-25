@@ -149,7 +149,7 @@ async function sendConfirmationEmail(to, nombre) {
   return getResend().emails.send({
     from: 'Eva Benavidez <info@evabenavidez.com>',
     to,
-    subject: '✅ Tu lugar está confirmado — Entrenamiento Neuroventa Digital',
+    subject: '¡Ya sos parte! Tu lugar en Neuroventas está confirmado',
     html: buildEmailHtml(nombre),
   });
 }
