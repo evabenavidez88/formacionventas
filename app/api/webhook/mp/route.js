@@ -14,7 +14,11 @@ function getPool() {
   return pool;
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resend = null;
+function getResend() {
+  if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
+  return resend;
+}
 
 async function getPayment(paymentId) {
   const res = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
@@ -34,7 +38,7 @@ async function getLeadByEmail(email) {
 }
 
 async function sendConfirmationEmail(to, nombre) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: 'Eva Benavidez <info@evabenavidez.com>',
     to,
     subject: '✅ Tu lugar está confirmado — Entrenamiento Neuroventa Digital',
