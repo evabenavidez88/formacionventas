@@ -42,8 +42,10 @@ async function sendConfirmationEmail(to, nombre) {
     from: 'Eva Benavidez <info@evabenavidez.com>',
     to,
     subject: '✅ Tu lugar está confirmado — Entrenamiento Neuroventa Digital',
-    template: 'neuroventa-digital-confirmation',
-    variables: { nombre },
+    template: {
+      id: 'neuroventa-digital-confirmation',
+      variables: { nombre },
+    },
   });
 }
 
