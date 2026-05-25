@@ -41,51 +41,106 @@ function buildEmailHtml(nombre) {
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tu lugar está confirmado</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Bienvenida al Entrenamiento · Eva Benavidez</title>
 </head>
-<body style="margin:0;padding:0;background:#f8f8f6;font-family:'Lato',Arial,sans-serif;">
-  <div style="max-width:560px;margin:40px auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.08);">
-    <div style="height:6px;background:linear-gradient(90deg,#7c4dff,#4dd0e1);"></div>
-    <div style="padding:40px 40px 32px;">
-      <div style="text-align:center;margin-bottom:24px;">
-        <div style="font-size:48px;margin-bottom:8px;">🎉</div>
-        <h1 style="margin:0;font-size:24px;font-weight:800;color:#0a0a0a;font-family:'Montserrat',Arial,sans-serif;">
-          ¡Tu lugar está confirmado, ${nombre}!
-        </h1>
-      </div>
-
-      <p style="color:#444;font-size:16px;line-height:1.7;margin:0 0 20px;">
-        Tu pago fue procesado exitosamente. Ya sos parte del
-        <strong>Entrenamiento en Neuroventa Digital</strong> — nos vemos el <strong>miércoles 18 de junio</strong>.
-      </p>
-
-      <div style="background:#f3f0ff;border-left:4px solid #7c4dff;border-radius:8px;padding:16px 20px;margin:0 0 24px;">
-        <p style="margin:0;font-size:14px;color:#444;"><strong>📅 Encuentros en vivo:</strong> 3 encuentros — 6 horas de entrenamiento</p>
-        <p style="margin:8px 0 0;font-size:14px;color:#444;"><strong>📹 Grabaciones:</strong> Acceso a los encuentros grabados</p>
-        <p style="margin:8px 0 0;font-size:14px;color:#444;"><strong>🛠 Material:</strong> Herramientas y recursos incluidos</p>
-      </div>
-
-      <p style="color:#444;font-size:15px;line-height:1.7;margin:0 0 8px;">
-        En las próximas horas vas a recibir un mensaje por WhatsApp con el link de acceso y todos los detalles del entrenamiento.
-      </p>
-
-      <p style="color:#444;font-size:15px;line-height:1.7;margin:0 0 32px;">
-        Si tenés alguna pregunta, respondé este mail y con gusto te ayudamos. ✨
-      </p>
-
-      <div style="text-align:center;">
-        <p style="margin:0;font-size:14px;color:#888;">Con cariño,</p>
-        <p style="margin:4px 0 0;font-size:16px;font-weight:700;color:#7c4dff;font-family:'Montserrat',Arial,sans-serif;">Eva Benavidez</p>
-      </div>
-    </div>
-    <div style="background:#f8f8f6;padding:20px 40px;text-align:center;border-top:1px solid #eee;">
-      <p style="margin:0;font-size:12px;color:#aaa;">
-        🔒 Este es un mail transaccional enviado por <a href="https://evabenavidez.com" style="color:#7c4dff;text-decoration:none;">evabenavidez.com</a>
-      </p>
-    </div>
-  </div>
+<body style="margin:0;padding:0;background:#f2ede9;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f2ede9;padding:32px 0;">
+  <tr>
+    <td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,0.07);">
+        <!-- HEADER LILA -->
+        <tr>
+          <td style="background:#865273;padding:36px 40px;text-align:center;">
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.65);">Entrenamiento &middot; Online en vivo</p>
+            <h1 style="margin:10px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:26px;font-weight:800;color:#ffffff;line-height:1.3;">Neuroventa Digital</h1>
+            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.75);">3 d&iacute;as para hackear tu mente y vender diferente</p>
+          </td>
+        </tr>
+        <!-- BADGE CONFIRMADO -->
+        <tr>
+          <td style="background:#F3D519;padding:14px 40px;text-align:center;">
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:800;color:#111111;letter-spacing:1px;text-transform:uppercase;">&#10003;&nbsp; Tu lugar est&aacute; confirmado</p>
+          </td>
+        </tr>
+        <!-- CUERPO PRINCIPAL -->
+        <tr>
+          <td style="padding:44px 48px 32px;">
+            <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#555555;">Hola <strong style="color:#111;">${nombre}</strong>,</p>
+            <h2 style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:800;color:#111111;line-height:1.3;">&#10024; &iexcl;Felicitaciones por sumarte a este entrenamiento!</h2>
+            <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Tu pago fue recibido y tu lugar est&aacute; confirmado. Tomaste una decisi&oacute;n potente &mdash; en estos 3 d&iacute;as vas a trabajar con un m&eacute;todo claro para dejar de improvisar, guiar conversaciones y cerrar con seguridad.</p>
+            <!-- FECHAS -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f5f3;border-radius:8px;border-left:4px solid #865273;margin:24px 0;">
+              <tr>
+                <td style="padding:18px 20px;">
+                  <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#865273;">Tus fechas</p>
+                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128197;&nbsp; <strong>Mi&eacute;rcoles 17 &middot; Jueves 18 &middot; Viernes 19 de Junio</strong></p>
+                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#9200;&nbsp; <strong>19:00 a 21:00 hs</strong> &mdash; 2 horas por encuentro</p>
+                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128187;&nbsp; <strong>100% Online en vivo</strong></p>
+                </td>
+              </tr>
+            </table>
+            <hr style="border:none;border-top:1px solid #eeebe8;margin:28px 0;">
+            <h3 style="margin:0 0 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:17px;font-weight:800;color:#111111;">&#128073; &iquest;Qu&eacute; sigue ahora?</h3>
+            <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Solo te queda <strong>un paso antes del inicio</strong>: sum&aacute;rte al grupo oficial del entrenamiento. Ese es el canal donde vamos a estar en contacto.</p>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
+              <tr><td style="padding:6px 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#444444;"><span style="color:#57BDB6;font-weight:700;margin-right:8px;">&#10003;</span>Recordatorio <strong>48 horas antes</strong> del primer encuentro</td></tr>
+              <tr><td style="padding:6px 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#444444;"><span style="color:#57BDB6;font-weight:700;margin-right:8px;">&#10003;</span>Link de acceso a cada sesi&oacute;n en vivo</td></tr>
+              <tr><td style="padding:6px 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#444444;"><span style="color:#57BDB6;font-weight:700;margin-right:8px;">&#10003;</span>Toda la informaci&oacute;n que necesit&aacute;s antes de arrancar</td></tr>
+            </table>
+            <p style="margin:0 0 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:#888888;font-style:italic;">A partir de ahora nos comunicamos <strong style="color:#111;">solo por ese medio.</strong></p>
+            <!-- BOTÓN GRUPO WHATSAPP -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 16px;">
+              <tr>
+                <td align="center">
+                  <a href="https://chat.whatsapp.com/BjEF4Y4el4R1KLhLT5XYmD?mode=gi_t" target="_blank" style="display:inline-block;background:#865273;color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:14px;text-decoration:none;padding:16px 40px;border-radius:6px;letter-spacing:0.5px;">
+                    &#128172;&nbsp; UNIRME AL GRUPO DE ENTRENAMIENTO
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr style="border:none;border-top:1px solid #eeebe8;margin:32px 0 28px;">
+            <h3 style="margin:0 0 10px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight:800;color:#111111;">&#128172; &iquest;Ten&eacute;s alguna duda antes de empezar?</h3>
+            <p style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Escribile directamente a Eva y te responde ella.</p>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="center">
+                  <a href="https://wa.me/message/X2BA2P356X5DG1" target="_blank" style="display:inline-block;background:#ffffff;color:#865273;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:13px;text-decoration:none;padding:14px 36px;border-radius:6px;letter-spacing:0.5px;border:2px solid #865273;">
+                    &#128172;&nbsp; ESCRIBIRLE A EVA
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- FRASE CIERRE -->
+        <tr>
+          <td style="background:#f7f5f3;padding:28px 48px;text-align:center;border-top:1px solid #eeebe8;">
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#865273;font-style:italic;">&ldquo;El 90% de la venta es convicci&oacute;n y solo el 10% persuasi&oacute;n.&rdquo;</p>
+            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:#aaa;">&mdash; Eva Benavidez</p>
+          </td>
+        </tr>
+        <!-- FIRMA -->
+        <tr>
+          <td style="padding:28px 48px 36px;text-align:center;">
+            <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;font-weight:800;color:#111111;">Eva Benavidez</p>
+            <p style="margin:0 0 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:#888888;">Neurocoach &middot; Consultora &middot; Formadora</p>
+            <a href="https://evabenavidez.com" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:#865273;text-decoration:none;">evabenavidez.com</a>
+          </td>
+        </tr>
+        <!-- FOOTER -->
+        <tr>
+          <td style="background:#111111;padding:18px 40px;text-align:center;">
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#666666;">&copy; 2026 Eva Benavidez &middot; evabenavidez.com &middot; C&oacute;rdoba, Argentina</p>
+            <p style="margin:6px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#555555;">Recibiste este mail porque te inscribiste al Entrenamiento en Neuroventa Digital.</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
 </body>
 </html>`;
 }
