@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 // Cutoff: 4 de junio 23:59 ART (UTC-3) = 5 de junio 02:59 UTC
 const CUTOFF = new Date('2026-06-05T03:00:00Z');
-const LINK_30OFF = 'https://mpago.la/1Aichrk';
-const LINK_FULL  = 'https://mpago.la/24VkqZM';
+const LINK_30OFF = 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-b3365f78-809e-4718-bf33-7eaef3f6bd1d';
+const LINK_FULL  = 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-0ba1ef8d-8a67-40df-ba12-e25175a55977';
 
 function getLinkPago() {
   return Date.now() < CUTOFF.getTime() ? LINK_30OFF : LINK_FULL;
