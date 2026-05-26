@@ -16,11 +16,13 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
   const [errApellido, setErrApellido] = useState(false);
   const [errEmail, setErrEmail] = useState(false);
   const [enviando, setEnviando] = useState(false);
+  const [yaRegistrado, setYaRegistrado] = useState(false);
 
   async function handleSubmit() {
     setErrNombre(false);
     setErrApellido(false);
     setErrEmail(false);
+    setYaRegistrado(false);
     let ok = true;
     if (!validarTexto(nombre)) { setErrNombre(true); ok = false; }
     if (!validarTexto(apellido)) { setErrApellido(true); ok = false; }
@@ -29,11 +31,16 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
 
     setEnviando(true);
     try {
-      await fetch('/api/leads', {
+      const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre: nombre.trim(), apellido: apellido.trim(), email }),
       });
+      if (res.status === 409) {
+        // Email ya registrado — igual seguimos al pago
+        setYaRegistrado(true);
+        await new Promise(r => setTimeout(r, 1800));
+      }
     } catch (e) { console.log(e); }
     router.push('/gracias');
   }
@@ -60,7 +67,7 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
             padding: '5px 16px', borderRadius: '30px', display: 'inline-block',
             marginBottom: '18px', border: '1.5px solid var(--lila-md)',
           }}>
-            Entrenamiento ✦ Junio 2025
+            Entrenamiento ✦ Junio 2026
           </span>
 
           <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '20px', fontWeight: 800, color: '#111', marginBottom: '8px' }}>
@@ -99,6 +106,16 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
             />
             {errEmail && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá un email válido</span>}
           </div>
+
+          {yaRegistrado && (
+            <div style={{
+              background: '#f0fdf4', border: '1.5px solid #86efac', borderRadius: '8px',
+              padding: '10px 16px', marginBottom: '14px', fontSize: '13px', color: '#166534',
+              fontWeight: 600, textAlign: 'center',
+            }}>
+              ✅ Ya estás registrada/o — te llevamos al pago ahora
+            </div>
+          )}
 
           <button
             onClick={handleSubmit} disabled={enviando}
