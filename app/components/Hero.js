@@ -15,7 +15,7 @@ export default function Hero({ onCTA }) {
           border: '1.5px solid var(--lila-md)', background: 'var(--lila-lt)',
           borderRadius: '30px', padding: '5px 18px', display: 'inline-block', marginBottom: '18px',
         }}>
-          Entrenamiento · Online en vivo · Junio 2025
+          Entrenamiento · Online en vivo · Junio 2026
         </div>
 
         <h1 style={{
@@ -78,7 +78,7 @@ export default function Hero({ onCTA }) {
           fontSize: '11px', fontWeight: 700, letterSpacing: '1px',
           textTransform: 'uppercase', lineHeight: 1.4,
         }}>
-          Neuroventas ✦<br />Junio 2025
+          Neuroventas ✦<br />Junio 2026
         </div>
       </div>
 
