@@ -187,6 +187,14 @@ export async function POST(request) {
     const lead = await getLeadByEmail(payerEmail);
     const nombre = lead?.nombre || payment.payer?.first_name || 'alumno/a';
 
+    // Marcamos el lead como pagado para no enviarle recordatorios
+    if (lead) {
+      await getPool().query(
+        'UPDATE leads_formacion SET pagado = true WHERE id = $1',
+        [lead.id]
+      );
+    }
+
     // Enviamos el mail de confirmación
     const emailResult = await sendConfirmationEmail(payerEmail, nombre);
     console.log(`Mail enviado a ${payerEmail}:`, emailResult);
