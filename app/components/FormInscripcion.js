@@ -38,7 +38,7 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
     if (!validarTexto(nombre)) { setErrNombre(true); ok = false; }
     if (!validarTexto(apellido)) { setErrApellido(true); ok = false; }
     if (!validarEmail(email)) { setErrEmail(true); ok = false; }
-    if (whatsapp.trim() && !validarWhatsapp(whatsapp)) { setErrWhatsapp(true); ok = false; }
+    if (!whatsapp.trim() || !validarWhatsapp(whatsapp)) { setErrWhatsapp(true); ok = false; }
     if (!ok) return;
 
     setEnviando(true);
@@ -123,7 +123,7 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
           <div style={{ marginBottom: '20px' }}>
             <label style={{ fontSize: '12px', color: '#888', marginBottom: '6px', display: 'flex', justifyContent: 'space-between' }}>
               <span>WhatsApp</span>
-              <span style={{ color: '#bbb' }}>opcional</span>
+              <span style={{ color: '#e74c3c', fontSize: '11px' }}>requerido</span>
             </label>
             <div style={{ position: 'relative' }}>
               <span style={{
