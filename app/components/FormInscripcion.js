@@ -6,6 +6,14 @@ function validarEmail(e) {
   return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e);
 }
 function validarTexto(n) { return n.trim().length >= 2; }
+function validarWhatsapp(n) {
+  const digits = n.replace(/\D/g, '');
+  return digits.length >= 8 && digits.length <= 15;
+}
+function formatWhatsapp(val) {
+  // Solo permite números, espacios, +, - y paréntesis
+  return val.replace(/[^\d\s+\-()]/g, '');
+}
 
 const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
   const router = useRouter();
@@ -15,6 +23,8 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
   const [errNombre, setErrNombre] = useState(false);
   const [errApellido, setErrApellido] = useState(false);
   const [errEmail, setErrEmail] = useState(false);
+  const [whatsapp, setWhatsapp] = useState('');
+  const [errWhatsapp, setErrWhatsapp] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [yaRegistrado, setYaRegistrado] = useState(false);
 
@@ -23,10 +33,12 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
     setErrApellido(false);
     setErrEmail(false);
     setYaRegistrado(false);
+    setErrWhatsapp(false);
     let ok = true;
     if (!validarTexto(nombre)) { setErrNombre(true); ok = false; }
     if (!validarTexto(apellido)) { setErrApellido(true); ok = false; }
     if (!validarEmail(email)) { setErrEmail(true); ok = false; }
+    if (whatsapp.trim() && !validarWhatsapp(whatsapp)) { setErrWhatsapp(true); ok = false; }
     if (!ok) return;
 
     setEnviando(true);
@@ -34,7 +46,7 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre: nombre.trim(), apellido: apellido.trim(), email }),
+        body: JSON.stringify({ nombre: nombre.trim(), apellido: apellido.trim(), email, whatsapp: whatsapp.trim() }),
       });
       if (res.status === 409) {
         // Email ya registrado — igual seguimos al pago
@@ -98,13 +110,42 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
           </div>
 
           {/* Email */}
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '14px' }}>
             <input type="email" placeholder="Email" autoComplete="email"
               value={email} onChange={e => setEmail(e.target.value)}
               onBlur={() => { if (email.trim()) setErrEmail(!validarEmail(email)); }}
               style={inputStyle(errEmail)}
             />
             {errEmail && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá un email válido</span>}
+          </div>
+
+          {/* WhatsApp */}
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ fontSize: '12px', color: '#888', marginBottom: '6px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>WhatsApp</span>
+              <span style={{ color: '#bbb' }}>opcional</span>
+            </label>
+            <div style={{ position: 'relative' }}>
+              <span style={{
+                position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)',
+                fontSize: '15px', color: '#888', fontFamily: "'Lato', sans-serif",
+                pointerEvents: 'none', userSelect: 'none',
+              }}>🇦🇷 +54</span>
+              <input
+                type="tel"
+                placeholder="11 1234-5678"
+                autoComplete="tel"
+                inputMode="numeric"
+                value={whatsapp}
+                onChange={e => setWhatsapp(formatWhatsapp(e.target.value))}
+                onBlur={() => { if (whatsapp.trim()) setErrWhatsapp(!validarWhatsapp(whatsapp)); }}
+                style={{
+                  ...inputStyle(errWhatsapp),
+                  paddingLeft: '80px',
+                }}
+              />
+            </div>
+            {errWhatsapp && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá un número válido</span>}
           </div>
 
           {yaRegistrado && (
