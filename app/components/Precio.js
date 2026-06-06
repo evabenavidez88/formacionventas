@@ -21,8 +21,11 @@ function useCountdown(target) {
   return t;
 }
 
+const CUTOFF = new Date('2026-06-05T03:00:00Z'); // 4/6 medianoche ARG
+
 export default function Precio({ onCTA }) {
   const { d, h, m, s } = useCountdown('2026-06-16T23:59:59-03:00');
+  const esPromo = Date.now() < CUTOFF;
 
   const incluye = [
     '3 encuentros en vivo — 6 horas de entrenamiento',
@@ -54,22 +57,26 @@ export default function Precio({ onCTA }) {
           background: '#fff', border: '1px solid var(--lila-md)',
           borderRadius: '16px', padding: '40px', textAlign: 'center', marginBottom: '16px',
         }}>
-          <div style={{
-            background: 'var(--amarillo)', color: '#111', fontFamily: "'Montserrat', sans-serif",
-            fontSize: '11px', fontWeight: 800, letterSpacing: '2px', padding: '5px 18px',
-            borderRadius: '20px', display: 'inline-block', marginBottom: '16px', textTransform: 'uppercase',
-          }}>
-            30% OFF · hasta el 4/6
-          </div>
+          {esPromo && (
+            <div style={{
+              background: 'var(--amarillo)', color: '#111', fontFamily: "'Montserrat', sans-serif",
+              fontSize: '11px', fontWeight: 800, letterSpacing: '2px', padding: '5px 18px',
+              borderRadius: '20px', display: 'inline-block', marginBottom: '16px', textTransform: 'uppercase',
+            }}>
+              30% OFF · hasta el 4/6
+            </div>
+          )}
 
-          <div style={{ fontSize: '18px', color: '#ccc', textDecoration: 'line-through', fontFamily: "'Montserrat', sans-serif", marginBottom: '2px' }}>
-            $65.000
-          </div>
+          {esPromo && (
+            <div style={{ fontSize: '18px', color: '#ccc', textDecoration: 'line-through', fontFamily: "'Montserrat', sans-serif", marginBottom: '2px' }}>
+              $65.000
+            </div>
+          )}
           <div style={{ fontSize: '58px', fontWeight: 800, color: 'var(--lila)', fontFamily: "'Montserrat', sans-serif", lineHeight: 1, marginBottom: '4px' }}>
-            $45.500
+            {esPromo ? '$45.500' : '$65.000'}
           </div>
           <div style={{ fontSize: '13px', color: '#888', marginBottom: '24px' }}>
-            3 cuotas sin interés de $15.167
+            {esPromo ? '3 cuotas sin interés de $15.167' : '3 cuotas sin interés de $21.667'}
           </div>
 
           <button className="btn-y-lg" style={{ width: '100%' }} onClick={onCTA}>
