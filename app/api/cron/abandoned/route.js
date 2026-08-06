@@ -1,13 +1,12 @@
 import { Resend } from 'resend';
 import { Pool } from 'pg';
 
-// Cutoff oferta 30% OFF: 4 de junio 23:59 ART = 5 de junio 02:59 UTC
-const CUTOFF = new Date('2026-06-05T03:00:00Z');
-const LINK_30OFF = 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-b3365f78-809e-4718-bf33-7eaef3f6bd1d';
-const LINK_FULL  = 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-0ba1ef8d-8a67-40df-ba12-e25175a55977';
+// Cutoff oferta: 24 de agosto 23:59 ART = 25 de agosto 03:00 UTC
+const CUTOFF = new Date('2026-08-25T03:00:00Z');
+const LINK_PAGO = 'https://mpago.la/2uB9Xr8';
 
 function getLinkPago() {
-  return Date.now() < CUTOFF.getTime() ? LINK_30OFF : LINK_FULL;
+  return LINK_PAGO;
 }
 
 let pool = null;
@@ -87,9 +86,9 @@ function buildAbandonedHtml(nombre) {
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f5f3;border-radius:8px;border-left:4px solid #57BDB6;margin:0 0 28px;">
               <tr>
                 <td style="padding:18px 20px;">
-                  <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128197;&nbsp;<strong>Mi&eacute;rcoles 17 &middot; Jueves 18 &middot; Viernes 19 de Junio</strong></p>
+                  <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128197;&nbsp;<strong>Mi&eacute;rcoles 2 &middot; Jueves 3 &middot; Viernes 4 de Septiembre</strong></p>
                   <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#9200;&nbsp;<strong>19:00 a 21:00 hs</strong> &middot; Online en vivo</p>
-                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128101;&nbsp;Cupos limitados &middot; Inscripciones hasta el <strong>martes 16 de junio</strong></p>
+                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128101;&nbsp;Cupos limitados &middot; Inscripciones hasta el <strong>martes 1 de septiembre</strong></p>
                 </td>
               </tr>
             </table>
@@ -97,12 +96,12 @@ function buildAbandonedHtml(nombre) {
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#57BDB6;border-radius:10px;margin:0 0 28px;">
               <tr>
                 <td style="padding:28px 32px;text-align:center;">
-                  <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.65);">Inversi&oacute;n con 30% OFF</p>
-                  <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;color:rgba(255,255,255,0.45);text-decoration:line-through;">$65.000</p>
-                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:48px;font-weight:800;color:#F3D519;line-height:1;">$45.500</p>
-                  <p style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.8);">3 cuotas sin inter&eacute;s de $15.167</p>
+                  <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.65);">Inversi&oacute;n</p>
+                  <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;color:rgba(255,255,255,0.45);text-decoration:line-through;">$75.000</p>
+                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:48px;font-weight:800;color:#F3D519;line-height:1;">$52.500</p>
+                  <p style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.8);">3 cuotas sin inter&eacute;s de $17.500</p>
                   <a href="${linkPago}" target="_blank" style="display:inline-block;background:#F3D519;color:#111111;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:14px;text-decoration:none;padding:16px 40px;border-radius:6px;letter-spacing:0.5px;">
-                    &#128073;&nbsp; QUIERO INSCRIBIRME CON EL 30% OFF
+                    &#128073;&nbsp; QUIERO INSCRIBIRME
                   </a>
                 </td>
               </tr>

@@ -1,50 +1,25 @@
 'use client';
-import { useRef } from 'react';
-import Topbar from './components/Topbar';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Identificacion from './components/Identificacion';
-import Transformacion from './components/Transformacion';
-import Proceso from './components/Proceso';
-import Contenido from './components/Contenido';
-import SobreEva from './components/SobreEva';
-import Testimonios from './components/Testimonios';
-import Precio from './components/Precio';
+import { useEffect } from 'react';
 import FormInscripcion from './components/FormInscripcion';
-import Cierre from './components/Cierre';
-import Footer from './components/Footer';
+import { BEFORE_FORM_HTML, AFTER_FORM_HTML } from './homeContent';
 
 export default function Home() {
-  const formRef = useRef(null);
-  function scrollToForm() {
-    formRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
+  useEffect(() => {
+    const deadline = new Date('2026-08-24T23:59:59');
+    const now = new Date();
+    const diff = deadline - now;
+    const days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+    const el = document.getElementById('countdown-days');
+    if (el) el.textContent = days;
+    const box = document.getElementById('countdown-box');
+    if (box && days === 0) box.innerHTML = '⚠️ ¡Último día de promo!';
+  }, []);
 
   return (
     <>
-      <Topbar />
-      <Navbar onCTA={scrollToForm} />
-      <Hero onCTA={scrollToForm} />
-      <Identificacion />
-      <Transformacion />
-      <Proceso onCTA={scrollToForm} />
-      <Contenido />
-      <SobreEva onCTA={scrollToForm} />
-      <Testimonios />
-      <Precio onCTA={scrollToForm} />
-      <FormInscripcion ref={formRef} />
-      <Cierre onCTA={scrollToForm} />
-      <Footer />
-
-      {/* WhatsApp flotante */}
-      <a
-        href="https://wa.me/message/X2BA2P356X5DG1"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="wpp-float"
-      >
-        💬 WhatsApp
-      </a>
+      <div dangerouslySetInnerHTML={{ __html: BEFORE_FORM_HTML }} />
+      <FormInscripcion />
+      <div dangerouslySetInnerHTML={{ __html: AFTER_FORM_HTML }} />
     </>
   );
 }

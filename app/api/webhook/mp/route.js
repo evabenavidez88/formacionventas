@@ -76,7 +76,7 @@ function buildEmailHtml(nombre) {
               <tr>
                 <td style="padding:18px 20px;">
                   <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#865273;">Tus fechas</p>
-                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128197;&nbsp; <strong>Mi&eacute;rcoles 17 &middot; Jueves 18 &middot; Viernes 19 de Junio</strong></p>
+                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128197;&nbsp; <strong>Mi&eacute;rcoles 2 &middot; Jueves 3 &middot; Viernes 4 de Septiembre</strong></p>
                   <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#9200;&nbsp; <strong>19:00 a 21:00 hs</strong> &mdash; 2 horas por encuentro</p>
                   <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128187;&nbsp; <strong>100% Online en vivo</strong></p>
                 </td>

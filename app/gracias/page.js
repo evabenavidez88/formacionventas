@@ -3,13 +3,12 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Cutoff: 4 de junio 23:59 ART (UTC-3) = 5 de junio 02:59 UTC
-const CUTOFF = new Date('2026-06-05T03:00:00Z');
-const LINK_30OFF = 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-b3365f78-809e-4718-bf33-7eaef3f6bd1d';
-const LINK_FULL  = 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-0ba1ef8d-8a67-40df-ba12-e25175a55977';
+// Cutoff: 24 de agosto 23:59 ART (UTC-3) = 25 de agosto 03:00 UTC
+const CUTOFF = new Date('2026-08-25T03:00:00Z');
+const LINK_PAGO = 'https://mpago.la/2uB9Xr8';
 
 function getLinkPago() {
-  return Date.now() < CUTOFF.getTime() ? LINK_30OFF : LINK_FULL;
+  return LINK_PAGO;
 }
 
 function getTieneDescuento() {
@@ -72,7 +71,7 @@ export default function GraciasPage() {
               borderRadius: '10px', padding: '10px 18px', margin: '16px 0',
               fontFamily: "'Montserrat', sans-serif", fontWeight: 700, fontSize: '13px', color: '#111',
             }}>
-              🎁 Estás pagando con el <strong>30% OFF</strong> — válido hasta el 4 de junio
+              🎁 Estás pagando con el <strong>30% OFF</strong> — válido hasta el 24 de agosto
             </div>
           )}
 

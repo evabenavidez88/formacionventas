@@ -3,7 +3,7 @@ import Script from 'next/script';
 
 export const metadata = {
   title: 'Entrenamiento en Neuroventa Digital · Eva Benavidez',
-  description: '3 días para hackear tu mente y vender diferente. Entrenamiento práctico online en vivo — Junio 2025.',
+  description: 'Aprendé mi método para gestionar estratégicamente tus conversaciones y convertir más consultas en ventas. Entrenamiento práctico online en vivo — Septiembre 2026.',
 };
 
 export default function RootLayout({ children }) {

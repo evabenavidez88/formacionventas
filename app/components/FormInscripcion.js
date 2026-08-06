@@ -1,5 +1,5 @@
 'use client';
-import { useState, forwardRef } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 function validarEmail(e) {
@@ -15,7 +15,9 @@ function formatWhatsapp(val) {
   return val.replace(/[^\d\s+\-()]/g, '');
 }
 
-const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
+const ERROR_COLOR = '#C0374A';
+
+export default function FormInscripcion() {
   const router = useRouter();
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
@@ -58,128 +60,98 @@ const FormInscripcion = forwardRef(function FormInscripcion(props, ref) {
   }
 
   const inputStyle = (err) => ({
-    width: '100%', padding: '12px 16px', borderRadius: '8px',
-    border: `1.5px solid ${err ? '#e74c3c' : 'var(--lila-md)'}`,
-    fontSize: '15px', outline: 'none', fontFamily: "'Lato', sans-serif",
-    background: '#fff', color: '#111', boxSizing: 'border-box',
+    padding: '14px 16px',
+    border: `1px solid ${err ? ERROR_COLOR : 'var(--border)'}`,
+    borderRadius: '10px', fontSize: '15px', fontFamily: 'inherit',
+    outline: 'none', width: '100%', boxSizing: 'border-box',
   });
 
   return (
-    <section ref={ref} style={{ background: 'var(--lila-lt)', borderTop: '1px solid var(--lila-md)', padding: '64px 0' }}>
-      <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+    <section id="formulario" style={{ background: 'var(--white)' }}>
+      <div className="wrap" style={{ maxWidth: '560px' }}>
+        <div style={{ textAlign: 'center' }}>
+          <span className="kicker">Entrenamiento ✦ Septiembre 2026</span>
+        </div>
+        <h2>Reservá tu lugar</h2>
+        <p className="subhead">Completá tus datos y a continuación vas a poder abonar tu inscripción.</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div>
+        <input type="text" placeholder="Nombre" autoComplete="given-name"
+          value={nombre} onChange={e => setNombre(e.target.value)}
+          onBlur={() => { if (nombre.trim()) setErrNombre(!validarTexto(nombre)); }}
+          style={inputStyle(errNombre)}
+        />
+        {errNombre && <span style={{ fontSize: '12px', color: ERROR_COLOR, marginTop: '4px', display: 'block' }}>Ingresá tu nombre</span>}
+      </div>
+
+      <div>
+        <input type="text" placeholder="Apellido" autoComplete="family-name"
+          value={apellido} onChange={e => setApellido(e.target.value)}
+          onBlur={() => { if (apellido.trim()) setErrApellido(!validarTexto(apellido)); }}
+          style={inputStyle(errApellido)}
+        />
+        {errApellido && <span style={{ fontSize: '12px', color: ERROR_COLOR, marginTop: '4px', display: 'block' }}>Ingresá tu apellido</span>}
+      </div>
+
+      <div>
+        <input type="email" placeholder="Email" autoComplete="email"
+          value={email} onChange={e => setEmail(e.target.value)}
+          onBlur={() => { if (email.trim()) setErrEmail(!validarEmail(email)); }}
+          style={inputStyle(errEmail)}
+        />
+        {errEmail && <span style={{ fontSize: '12px', color: ERROR_COLOR, marginTop: '4px', display: 'block' }}>Ingresá un email válido</span>}
+      </div>
+
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: 'var(--gray)', marginBottom: '6px' }}>
+          <span>WhatsApp</span><span style={{ color: ERROR_COLOR }}>requerido</span>
+        </div>
         <div style={{
-          background: '#fff', borderRadius: '16px', padding: '40px',
-          maxWidth: '480px', width: '100%',
-          boxShadow: '0 4px 32px rgba(134,82,115,0.1)',
-          border: '1px solid var(--lila-md)', borderTop: '4px solid var(--lila)',
+          display: 'flex', alignItems: 'center', gap: '10px', borderRadius: '10px', padding: '14px 16px',
+          border: `1px solid ${errWhatsapp ? ERROR_COLOR : 'var(--border)'}`,
         }}>
-          <span style={{
-            fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 700,
-            letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--lila)',
-            padding: '5px 16px', borderRadius: '30px', display: 'inline-block',
-            marginBottom: '18px', border: '1.5px solid var(--lila-md)',
-          }}>
-            Entrenamiento ✦ Junio 2026
-          </span>
+          <span style={{ color: 'var(--gray)', fontSize: '14px' }}>AR +54</span>
+          <input
+            type="tel"
+            placeholder="11 1234-5678"
+            autoComplete="tel"
+            inputMode="numeric"
+            value={whatsapp}
+            onChange={e => setWhatsapp(formatWhatsapp(e.target.value))}
+            onBlur={() => { if (whatsapp.trim()) setErrWhatsapp(!validarWhatsapp(whatsapp)); }}
+            style={{ border: 'none', outline: 'none', fontSize: '15px', fontFamily: 'inherit', flex: 1 }}
+          />
+        </div>
+        {errWhatsapp && <span style={{ fontSize: '12px', color: ERROR_COLOR, marginTop: '4px', display: 'block' }}>Ingresá un número válido</span>}
+      </div>
 
-          <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '20px', fontWeight: 800, color: '#111', marginBottom: '8px' }}>
-            Reservá tu lugar
-          </h3>
-          <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px', lineHeight: 1.6 }}>
-            Completá tus datos y a continuación vas a poder abonar tu inscripción.
-          </p>
+      {yaRegistrado && (
+        <div style={{
+          background: '#f0fdf4', border: '1.5px solid #86efac', borderRadius: '8px',
+          padding: '10px 16px', fontSize: '13px', color: '#166534',
+          fontWeight: 600, textAlign: 'center',
+        }}>
+          ✅ Ya estás registrada/o — te llevamos al pago ahora
+        </div>
+      )}
 
-          {/* Nombre */}
-          <div style={{ marginBottom: '14px' }}>
-            <input type="text" placeholder="Nombre" autoComplete="given-name"
-              value={nombre} onChange={e => setNombre(e.target.value)}
-              onBlur={() => { if (nombre.trim()) setErrNombre(!validarTexto(nombre)); }}
-              style={inputStyle(errNombre)}
-            />
-            {errNombre && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá tu nombre</span>}
-          </div>
+      <button
+        className="btn lg"
+        onClick={handleSubmit} disabled={enviando}
+        style={{
+          width: '100%', marginTop: '6px', border: 'none',
+          cursor: enviando ? 'not-allowed' : 'pointer',
+          opacity: enviando ? 0.7 : 1,
+        }}
+      >
+        {enviando ? 'Un momento...' : 'Quiero inscribirme'}
+      </button>
 
-          {/* Apellido */}
-          <div style={{ marginBottom: '14px' }}>
-            <input type="text" placeholder="Apellido" autoComplete="family-name"
-              value={apellido} onChange={e => setApellido(e.target.value)}
-              onBlur={() => { if (apellido.trim()) setErrApellido(!validarTexto(apellido)); }}
-              style={inputStyle(errApellido)}
-            />
-            {errApellido && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá tu apellido</span>}
-          </div>
-
-          {/* Email */}
-          <div style={{ marginBottom: '14px' }}>
-            <input type="email" placeholder="Email" autoComplete="email"
-              value={email} onChange={e => setEmail(e.target.value)}
-              onBlur={() => { if (email.trim()) setErrEmail(!validarEmail(email)); }}
-              style={inputStyle(errEmail)}
-            />
-            {errEmail && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá un email válido</span>}
-          </div>
-
-          {/* WhatsApp */}
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{ fontSize: '12px', color: '#888', marginBottom: '6px', display: 'flex', justifyContent: 'space-between' }}>
-              <span>WhatsApp</span>
-              <span style={{ color: '#e74c3c', fontSize: '11px' }}>requerido</span>
-            </label>
-            <div style={{ position: 'relative' }}>
-              <span style={{
-                position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)',
-                fontSize: '15px', color: '#888', fontFamily: "'Lato', sans-serif",
-                pointerEvents: 'none', userSelect: 'none',
-              }}>🇦🇷 +54</span>
-              <input
-                type="tel"
-                placeholder="11 1234-5678"
-                autoComplete="tel"
-                inputMode="numeric"
-                value={whatsapp}
-                onChange={e => setWhatsapp(formatWhatsapp(e.target.value))}
-                onBlur={() => { if (whatsapp.trim()) setErrWhatsapp(!validarWhatsapp(whatsapp)); }}
-                style={{
-                  ...inputStyle(errWhatsapp),
-                  paddingLeft: '80px',
-                }}
-              />
-            </div>
-            {errWhatsapp && <span style={{ fontSize: '12px', color: '#e74c3c', marginTop: '4px', display: 'block' }}>Ingresá un número válido</span>}
-          </div>
-
-          {yaRegistrado && (
-            <div style={{
-              background: '#f0fdf4', border: '1.5px solid #86efac', borderRadius: '8px',
-              padding: '10px 16px', marginBottom: '14px', fontSize: '13px', color: '#166534',
-              fontWeight: 600, textAlign: 'center',
-            }}>
-              ✅ Ya estás registrada/o — te llevamos al pago ahora
-            </div>
-          )}
-
-          <button
-            onClick={handleSubmit} disabled={enviando}
-            style={{
-              width: '100%', padding: '15px', background: 'var(--amarillo)', color: '#111',
-              border: 'none', borderRadius: '8px', fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 800, fontSize: '15px', cursor: enviando ? 'not-allowed' : 'pointer',
-              opacity: enviando ? 0.7 : 1,
-            }}
-          >
-            {enviando ? 'Un momento...' : '→ Quiero inscribirme'}
-          </button>
-
-          <p style={{ fontSize: '12px', color: '#aaa', textAlign: 'center', marginTop: '14px' }}>
-            🔒 Tus datos están seguros · El pago es en el siguiente paso
-          </p>
-          <p style={{ fontSize: '12px', color: 'var(--lila)', textAlign: 'center', marginTop: '6px', fontWeight: 700 }}>
-            ⚠ Cupos limitados · Inicio Miércoles 17 de Junio
-          </p>
+        <p style={{ textAlign: 'center', fontSize: '12px', color: 'var(--gray-light)' }}>
+          🔒 Tus datos están seguros. El pago es en el siguiente paso.
+        </p>
         </div>
       </div>
     </section>
   );
-});
-
-export default FormInscripcion;
+}
