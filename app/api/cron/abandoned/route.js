@@ -3,7 +3,7 @@ import { Pool } from 'pg';
 
 // Cutoff oferta: 24 de agosto 23:59 ART = 25 de agosto 03:00 UTC
 const CUTOFF = new Date('2026-08-25T03:00:00Z');
-const LINK_PAGO = 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-b3365f78-809e-4718-bf33-7eaef3f6bd1d';
+const LINK_PAGO = 'https://mpago.la/1Aichrk';
 
 function getLinkPago() {
   return LINK_PAGO;
