@@ -97,7 +97,7 @@ function buildAbandonedHtml(nombre) {
               <tr>
                 <td style="padding:28px 32px;text-align:center;">
                   <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.65);">Inversi&oacute;n</p>
-                  <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;color:rgba(255,255,255,0.45);text-decoration:line-through;">$75.000</p>
+                  <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;color:rgba(255,255,255,0.45);text-decoration:line-through;">$65.000</p>
                   <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:48px;font-weight:800;color:#F3D519;line-height:1;">$52.500</p>
                   <p style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.8);">3 cuotas sin inter&eacute;s de $17.500</p>
                   <a href="${linkPago}" target="_blank" style="display:inline-block;background:#F3D519;color:#111111;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:14px;text-decoration:none;padding:16px 40px;border-radius:6px;letter-spacing:0.5px;">

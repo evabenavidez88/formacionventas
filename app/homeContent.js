@@ -197,7 +197,7 @@ export const BEFORE_FORM_HTML = `<div class="promo-bar">Oferta hasta el 24 de ag
     <h2>Inversión</h2>
     <p class="subhead">Sumate al entrenamiento</p>
     <div class="price-card">
-      <div class="price-old">$75.000</div>
+      <div class="price-old">$65.000</div>
       <div class="price-new">$52.500</div>
       <div class="price-installments">✨ 3 cuotas sin interés de $17.500</div>
       <div id="countdown-box" style="background:var(--wine);color:#fff;border-radius:8px;padding:10px 14px;margin:14px 0;font-size:14px;font-weight:700;">
