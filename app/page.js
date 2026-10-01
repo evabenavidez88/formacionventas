@@ -1,6 +1,5 @@
 import FormInscripcion from './components/FormInscripcion';
 import WspFlotante from './components/WspFlotante';
-import VideoLiviano from './components/VideoLiviano';
 import { CuentaRegresiva, RefrescoPromo } from './components/Vigencia';
 import {
   IcoCalendario, IcoReloj, IcoPantalla, IcoCheck, IcoX, IcoChevron, IcoEscudo, IcoTarjeta,
@@ -182,7 +181,15 @@ export default function Home() {
           <div className="testimonios">
             {TESTIMONIOS.map((v) => (
               <figure className="testimonio" key={v.id}>
-                <VideoLiviano id={v.id} titulo={v.nombre ? `Testimonio de ${v.nombre}` : 'Testimonios del entrenamiento'} />
+                <div className="video-embed">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${v.id}`}
+                    title="Testimonios Neuroventa Digital"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
                 {v.nombre && (
                   <figcaption>
                     {v.frase && <q>{v.frase}</q>}
@@ -212,8 +219,14 @@ export default function Home() {
       <section>
         <div className="wrap">
           <div className="eva-grid">
-            <div className="eva-foto">
-              <img src="/images/hero-foto.jpg" alt="Eva Benavidez" width="900" height="900" loading="lazy" />
+            <div className="eva-video">
+              <iframe
+                src="https://www.youtube.com/embed/dfZOWzIh_d4"
+                title="Soy Eva Benavidez"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
             <div>
               <h2 className="izq">Soy Eva Benavidez</h2>

@@ -85,22 +85,11 @@ function buildEmailHtml(nombre) {
             </table>` : ''}
             <hr style="border:none;border-top:1px solid #eeebe8;margin:28px 0;">
             <h3 style="margin:0 0 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:17px;font-weight:800;color:#111111;">&iquest;Qu&eacute; sigue ahora?</h3>
-            <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Solo te queda <strong>un paso antes del inicio</strong>: sum&aacute;rte al grupo oficial del entrenamiento. Ese es el canal donde vamos a estar en contacto.</p>
+            <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">En los pr&oacute;ximos d&iacute;as <strong>Eva te escribe por WhatsApp</strong> para sumarte al grupo del entrenamiento. Por ah&iacute; vas a recibir:</p>
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
               <tr><td style="padding:6px 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#444444;"><span style="color:#57BDB6;font-weight:700;margin-right:8px;">&#10003;</span>Recordatorio <strong>48 horas antes</strong> del primer encuentro</td></tr>
               <tr><td style="padding:6px 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#444444;"><span style="color:#57BDB6;font-weight:700;margin-right:8px;">&#10003;</span>Link de acceso a cada sesi&oacute;n en vivo</td></tr>
               <tr><td style="padding:6px 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#444444;"><span style="color:#57BDB6;font-weight:700;margin-right:8px;">&#10003;</span>Toda la informaci&oacute;n que necesit&aacute;s antes de arrancar</td></tr>
-            </table>
-            <p style="margin:0 0 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:#888888;font-style:italic;">A partir de ahora nos comunicamos <strong style="color:#111;">solo por ese medio.</strong></p>
-            <!-- BOTÓN GRUPO WHATSAPP -->
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 16px;">
-              <tr>
-                <td align="center">
-                  <a href="https://chat.whatsapp.com/BjEF4Y4el4R1KLhLT5XYmD?mode=gi_t" target="_blank" style="display:inline-block;background:#865273;color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:14px;text-decoration:none;padding:16px 40px;border-radius:6px;letter-spacing:0.5px;">
-                    UNIRME AL GRUPO DE ENTRENAMIENTO
-                  </a>
-                </td>
-              </tr>
             </table>
             <hr style="border:none;border-top:1px solid #eeebe8;margin:32px 0 28px;">
             <h3 style="margin:0 0 10px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight:800;color:#111111;">&iquest;Ten&eacute;s alguna duda antes de empezar?</h3>

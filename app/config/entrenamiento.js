@@ -4,11 +4,18 @@
 export const NOMBRE_PROGRAMA = 'Entrenamiento Neuroventa Digital + IA';
 export const SITIO = 'https://neuroformacion.evabenavidez.com';
 
-// Fechas de la nueva cohorte. Mientras sea null, la landing muestra [EVA ACTUALIZA]
-// y los mails no muestran fechas. Ejemplo: 'Martes 3, miércoles 4 y jueves 5 de noviembre'
-export const FECHAS = null;
+// Fechas de la cohorte. Si se deja en null, la landing muestra [EVA ACTUALIZA]
+// y los mails no muestran fechas.
+export const FECHAS = 'Martes 3, miércoles 4 y jueves 5 de noviembre';
 export const FECHAS_TEXTO = FECHAS || '[EVA ACTUALIZA]';
 export const HORARIO = '19:00 a 21:00 hs (ARG)';
+
+// Links de pago de Mercado Pago (preferencias ya integradas con el webhook de confirmación).
+// Se pueden reemplazar sin tocar código con las variables MP_LINK_PROMO / MP_LINK_COMPLETO.
+export const LINKS_PAGO = {
+  promo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-b3365f78-809e-4718-bf33-7eaef3f6bd1d', // $45.500
+  completo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-0ba1ef8d-8a67-40df-ba12-e25175a55977', // $65.000
+};
 
 // Fin de la promo: 28/10/2026 23:59:59 ARG (UTC-3) → desde 29/10/2026 00:00 ARG precio completo.
 export const FIN_PROMO = new Date('2026-10-29T03:00:00Z');
@@ -19,7 +26,7 @@ export const PRECIOS = {
 };
 
 export const LINKS = {
-  whatsapp: 'https://wa.link/8fvvoo',
+  whatsapp: 'https://wa.me/543516098988?text=' + encodeURIComponent('Hola Eva, quiero sumarme a Neuroventa Digital.'),
   instagram: 'https://www.instagram.com/evabenavidez.negocios',
   linkedin: 'https://www.linkedin.com/in/benavidezevangelina/',
   sitio: 'https://evabenavidez.com',

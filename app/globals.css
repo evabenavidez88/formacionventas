@@ -156,6 +156,9 @@ h2.izq{text-align:left;}
 /* 6 · TESTIMONIOS */
 .testimonios{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;}
 .testimonio{width:100%;max-width:300px;margin:0;}
+.video-embed{width:100%;aspect-ratio:9/16;max-height:480px;margin:0 auto;background:#000;border-radius:var(--radius);overflow:hidden;}
+.video-embed iframe,.eva-video iframe{width:100%;height:100%;border:0;display:block;}
+.eva-video{aspect-ratio:1/1;border-radius:var(--radius);overflow:hidden;background:#000;}
 .video-lite{position:relative;display:block;width:100%;aspect-ratio:9/16;border:0;padding:0;border-radius:var(--radius);overflow:hidden;background:#000;cursor:pointer;}
 .video-lite img{width:100%;height:100%;object-fit:cover;display:block;}
 .video-lite iframe{width:100%;height:100%;border:0;display:block;}
@@ -262,7 +265,7 @@ footer .redes a:hover{background:rgba(255,255,255,.12);}
   .hero-ctas .btn{text-align:center;}
   .price-card,.form-card{padding:22px 18px;}
   .price-new{font-size:38px;}
-  .eva-foto{max-width:360px;margin:0 auto;}
+  .eva-foto,.eva-video{max-width:360px;width:100%;margin:0 auto;}
   .id-icon{width:52px;height:52px;}
   .id-card{font-size:15px;}
   .incluye li{font-size:15px;}
