@@ -104,7 +104,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-photo">
-            <img src="/images/nf2/nf2-2.jpg" alt="Eva Benavidez" width="800" height="1000" fetchPriority="high" />
+            <img src="/images/nf2/nf2-2-recorte.jpg" alt="Eva Benavidez" width="560" height="700" fetchPriority="high" />
           </div>
         </div>
       </section>
@@ -129,9 +129,9 @@ export default function Home() {
       {/* 3 · POR QUÉ PASA */}
       <section className="por-que">
         <div className="wrap angosto">
-          <h2>Tu cliente decide con el cerebro, no con tu párrafo.</h2>
-          <p>Por chat no ves la cara de tu cliente. Si no entendés cómo decide, respondés a ciegas.</p>
-          <p>La IA escribe rápido, pero no sabe cómo decide tu cliente ni cuál es tu proceso. Sin método, solo acelera la improvisación.</p>
+          <h2>Detrás de cada mensaje hay una persona decidiendo.</h2>
+          <p>Por chat no ves su cara ni lo que siente. Sin entender cómo decide, respondés a ciegas.</p>
+          <p>La IA ayuda, pero no conoce a tu cliente como vos.</p>
           <p className="remate">Primero orden. Después, IA.</p>
         </div>
       </section>
