@@ -122,6 +122,7 @@ export default function Home() {
             ))}
           </div>
           <div className="callout">No es falta de capacidad. Es falta de <span className="accent">método</span>.</div>
+          <div className="centro"><Boton /></div>
         </div>
       </section>
 
@@ -153,6 +154,7 @@ export default function Home() {
             ))}
           </div>
           <p className="process-close">Salís con las tres dimensiones trabajadas sobre tu propio negocio, no en teoría.</p>
+          <div className="centro"><Boton /></div>
         </div>
       </section>
 
