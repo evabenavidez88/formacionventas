@@ -2,8 +2,8 @@ import './globals.css';
 import Script from 'next/script';
 
 export const metadata = {
-  title: 'Entrenamiento en Neuroventa Digital · Eva Benavidez',
-  description: 'Aprendé mi método para gestionar estratégicamente tus conversaciones y convertir más consultas en ventas. Entrenamiento práctico online en vivo — Septiembre 2026.',
+  title: 'Entrenamiento Neuroventa Digital + IA · Eva Benavidez',
+  description: 'Aprendé mi método para ordenar tus conversaciones de venta y a usar la IA como aliada para diseñar tu proceso e integrar tus canales, sin perder lo humano. Entrenamiento online en vivo.',
 };
 
 export default function RootLayout({ children }) {

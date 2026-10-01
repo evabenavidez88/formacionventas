@@ -1,13 +1,10 @@
 import { Resend } from 'resend';
 import { Pool } from 'pg';
 
-// Cutoff oferta: 24 de agosto 23:59 ART = 25 de agosto 03:00 UTC
-const CUTOFF = new Date('2026-08-25T03:00:00Z');
-const LINK_PAGO = 'https://mpago.la/1Aichrk';
+import { SITIO, FECHAS, HORARIO, NOMBRE_PROGRAMA, precioVigente, formatoPesos } from '../../../config/entrenamiento';
 
-function getLinkPago() {
-  return LINK_PAGO;
-}
+// El botón lleva a /api/pago, que redirige al cobro del período vigente.
+const LINK_PAGO = `${SITIO}/api/pago`;
 
 let pool = null;
 function getPool() {
@@ -29,14 +26,15 @@ function getResend() {
 }
 
 function buildAbandonedHtml(nombre) {
-  const linkPago = getLinkPago();
+  const linkPago = LINK_PAGO;
+  const precio = precioVigente();
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Tu lugar en Neuroventas todav&iacute;a est&aacute; disponible · Eva Benavidez</title>
+<title>Tu lugar en el Entrenamiento todav&iacute;a est&aacute; disponible · Eva Benavidez</title>
 </head>
 <body style="margin:0;padding:0;background:#e8f7f6;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#e8f7f6;padding:32px 0;">
@@ -47,21 +45,21 @@ function buildAbandonedHtml(nombre) {
         <tr>
           <td style="background:#57BDB6;padding:36px 40px;text-align:center;">
             <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.65);">Entrenamiento &middot; Online en vivo</p>
-            <h1 style="margin:10px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:26px;font-weight:800;color:#ffffff;line-height:1.3;">Neuroventa Digital</h1>
-            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.82);">3 d&iacute;as para hackear tu mente y vender diferente</p>
+            <h1 style="margin:10px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:26px;font-weight:800;color:#ffffff;line-height:1.3;">Neuroventa Digital + IA</h1>
+            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.82);">Primero orden. Despu&eacute;s, IA.</p>
           </td>
         </tr>
         <!-- BADGE URGENCIA AMARILLO -->
         <tr>
           <td style="background:#F3D519;padding:14px 40px;text-align:center;">
-            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:800;color:#111111;letter-spacing:1px;text-transform:uppercase;">&#9888;&nbsp; Tu lugar todav&iacute;a est&aacute; disponible &mdash; los cupos son limitados</p>
+            <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:800;color:#111111;letter-spacing:1px;text-transform:uppercase;">Tu lugar todav&iacute;a est&aacute; disponible</p>
           </td>
         </tr>
         <!-- CUERPO -->
         <tr>
           <td style="padding:44px 48px 32px;">
             <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#555555;">Hola <strong style="color:#111;">${nombre}</strong>,</p>
-            <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Hace un rato estuviste a punto de sumarte al <strong>Entrenamiento en Neuroventa Digital</strong>.</p>
+            <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Hace un rato estuviste a punto de sumarte al <strong>${NOMBRE_PROGRAMA}</strong>.</p>
             <p style="margin:0 0 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Algo te fren&oacute;. Pasa.<br>Pero tu lugar <strong>todav&iacute;a est&aacute; disponible.</strong></p>
             <!-- BLOQUE REFLEXIÓN -->
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#e8f7f6;border-radius:8px;border-left:4px solid #57BDB6;margin:0 0 28px;">
@@ -82,38 +80,37 @@ function buildAbandonedHtml(nombre) {
               <tr><td style="padding:7px 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#444444;line-height:1.5;"><span style="color:#57BDB6;font-weight:700;margin-right:8px;">&#10003;</span>Cerrar con claridad &mdash; sin presionar, sin improvisar</td></tr>
             </table>
             <p style="margin:0 0 28px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:#888888;font-style:italic;text-align:center;">No es teor&iacute;a. Es entrenamiento real aplicado a tu negocio.</p>
-            <!-- FECHAS -->
+            ${FECHAS ? `<!-- FECHAS -->
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f5f3;border-radius:8px;border-left:4px solid #57BDB6;margin:0 0 28px;">
               <tr>
                 <td style="padding:18px 20px;">
-                  <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128197;&nbsp;<strong>Mi&eacute;rcoles 2 &middot; Jueves 3 &middot; Viernes 4 de Septiembre</strong></p>
-                  <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#9200;&nbsp;<strong>19:00 a 21:00 hs</strong> &middot; Online en vivo</p>
-                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128101;&nbsp;Cupos limitados &middot; Inscripciones hasta el <strong>martes 1 de septiembre</strong></p>
+                  <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>${FECHAS}</strong></p>
+                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>${HORARIO}</strong> &middot; Online en vivo</p>
                 </td>
               </tr>
-            </table>
+            </table>` : ''}
             <!-- BLOQUE PRECIO -->
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#57BDB6;border-radius:10px;margin:0 0 28px;">
               <tr>
                 <td style="padding:28px 32px;text-align:center;">
                   <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.65);">Inversi&oacute;n</p>
-                  <p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;color:rgba(255,255,255,0.45);text-decoration:line-through;">$65.000</p>
-                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:48px;font-weight:800;color:#F3D519;line-height:1;">$52.500</p>
-                  <p style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.8);">3 cuotas sin inter&eacute;s de $17.500</p>
+                  ${precio.promo ? `<p style="margin:0 0 4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;color:rgba(255,255,255,0.6);text-decoration:line-through;">${formatoPesos(precio.anterior)}</p>` : ''}
+                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:48px;font-weight:800;color:#F3D519;line-height:1;">${formatoPesos(precio.total)}</p>
+                  <p style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.8);">o 3 cuotas sin inter&eacute;s de ${formatoPesos(precio.cuota)}${precio.promo ? ' &middot; Precio con descuento hasta el 28/10' : ''}</p>
                   <a href="${linkPago}" target="_blank" style="display:inline-block;background:#F3D519;color:#111111;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:14px;text-decoration:none;padding:16px 40px;border-radius:6px;letter-spacing:0.5px;">
-                    &#128073;&nbsp; QUIERO INSCRIBIRME
+                    QUIERO INSCRIBIRME
                   </a>
                 </td>
               </tr>
             </table>
             <hr style="border:none;border-top:1px solid #eeebe8;margin:28px 0;">
-            <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#111111;">&#128172; &iquest;Ten&eacute;s una duda antes de decidir?</p>
+            <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#111111;">&iquest;Ten&eacute;s una duda antes de decidir?</p>
             <p style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#666666;line-height:1.7;">Escribile directamente a Eva &mdash; te responde ella.</p>
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td align="center">
                   <a href="https://wa.me/message/X2BA2P356X5DG1" target="_blank" style="display:inline-block;background:#ffffff;color:#57BDB6;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:13px;text-decoration:none;padding:14px 36px;border-radius:6px;border:2px solid #57BDB6;">
-                    &#128172;&nbsp; HABL&Aacute; CON EVA
+                    HABL&Aacute; CON EVA
                   </a>
                 </td>
               </tr>
@@ -123,7 +120,7 @@ function buildAbandonedHtml(nombre) {
         <!-- FRASE CIERRE -->
         <tr>
           <td style="background:#e8f7f6;padding:28px 48px;text-align:center;border-top:1px solid #c8e8e6;">
-            <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#3a9993;font-style:italic;">&ldquo;El precio de hoy no va a ser el precio de ma&ntilde;ana.&rdquo;</p>
+            <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#3a9993;font-style:italic;">&ldquo;Con orden y direcci&oacute;n, todo se logra.&rdquo;</p>
             <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:#88bdb9;">Eva Benavidez</p>
           </td>
         </tr>
@@ -139,7 +136,7 @@ function buildAbandonedHtml(nombre) {
         <tr>
           <td style="background:#111111;padding:18px 40px;text-align:center;">
             <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#666666;">&copy; 2026 Eva Benavidez &middot; evabenavidez.com &middot; C&oacute;rdoba, Argentina</p>
-            <p style="margin:6px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#555555;">Recibiste este mail porque visitaste la p&aacute;gina del Entrenamiento en Neuroventa Digital.</p>
+            <p style="margin:6px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#555555;">Recibiste este mail porque visitaste la p&aacute;gina del ${NOMBRE_PROGRAMA}.</p>
           </td>
         </tr>
       </table>
@@ -178,7 +175,7 @@ export async function GET(request) {
         await resendClient.emails.send({
           from: 'Eva Benavidez <info@evabenavidez.com>',
           to: lead.email,
-          subject: `${lead.nombre}, tu lugar en Neuroventas todavía está disponible`,
+          subject: `${lead.nombre}, tu lugar en el Entrenamiento Neuroventa Digital + IA todavía está disponible`,
           html: buildAbandonedHtml(lead.nombre),
         });
         await db.query(
@@ -204,7 +201,7 @@ export async function GET(request) {
         await resendClient.emails.send({
           from: 'Eva Benavidez <info@evabenavidez.com>',
           to: lead.email,
-          subject: `Último aviso — los cupos se están agotando, ${lead.nombre}`,
+          subject: `${lead.nombre}, ¿te quedó alguna duda sobre el Entrenamiento?`,
           html: buildAbandonedHtml(lead.nombre),
         });
         await db.query(

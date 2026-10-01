@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { Pool } from 'pg';
+import { FECHAS, HORARIO, NOMBRE_PROGRAMA } from '../../../config/entrenamiento';
 
 let pool = null;
 function getPool() {
@@ -55,8 +56,8 @@ function buildEmailHtml(nombre) {
         <tr>
           <td style="background:#865273;padding:36px 40px;text-align:center;">
             <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.65);">Entrenamiento &middot; Online en vivo</p>
-            <h1 style="margin:10px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:26px;font-weight:800;color:#ffffff;line-height:1.3;">Neuroventa Digital</h1>
-            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.75);">3 d&iacute;as para hackear tu mente y vender diferente</p>
+            <h1 style="margin:10px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:26px;font-weight:800;color:#ffffff;line-height:1.3;">Neuroventa Digital + IA</h1>
+            <p style="margin:8px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.75);">Primero orden. Despu&eacute;s, IA.</p>
           </td>
         </tr>
         <!-- BADGE CONFIRMADO -->
@@ -69,21 +70,21 @@ function buildEmailHtml(nombre) {
         <tr>
           <td style="padding:44px 48px 32px;">
             <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#555555;">Hola <strong style="color:#111;">${nombre}</strong>,</p>
-            <h2 style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:800;color:#111111;line-height:1.3;">&#10024; &iexcl;Felicitaciones por sumarte a este entrenamiento!</h2>
+            <h2 style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:800;color:#111111;line-height:1.3;">&iexcl;Felicitaciones por sumarte a este entrenamiento!</h2>
             <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Tu pago fue recibido y tu lugar est&aacute; confirmado. Tomaste una decisi&oacute;n potente &mdash; en estos 3 d&iacute;as vas a trabajar con un m&eacute;todo claro para dejar de improvisar, guiar conversaciones y cerrar con seguridad.</p>
-            <!-- FECHAS -->
+            ${FECHAS ? `<!-- FECHAS -->
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f5f3;border-radius:8px;border-left:4px solid #865273;margin:24px 0;">
               <tr>
                 <td style="padding:18px 20px;">
                   <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#865273;">Tus fechas</p>
-                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128197;&nbsp; <strong>Mi&eacute;rcoles 2 &middot; Jueves 3 &middot; Viernes 4 de Septiembre</strong></p>
-                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#9200;&nbsp; <strong>19:00 a 21:00 hs</strong> &mdash; 2 horas por encuentro</p>
-                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">&#128187;&nbsp; <strong>100% Online en vivo</strong></p>
+                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>${FECHAS}</strong></p>
+                  <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>${HORARIO}</strong> &mdash; 2 horas por encuentro</p>
+                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>100% online en vivo</strong></p>
                 </td>
               </tr>
-            </table>
+            </table>` : ''}
             <hr style="border:none;border-top:1px solid #eeebe8;margin:28px 0;">
-            <h3 style="margin:0 0 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:17px;font-weight:800;color:#111111;">&#128073; &iquest;Qu&eacute; sigue ahora?</h3>
+            <h3 style="margin:0 0 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:17px;font-weight:800;color:#111111;">&iquest;Qu&eacute; sigue ahora?</h3>
             <p style="margin:0 0 16px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Solo te queda <strong>un paso antes del inicio</strong>: sum&aacute;rte al grupo oficial del entrenamiento. Ese es el canal donde vamos a estar en contacto.</p>
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
               <tr><td style="padding:6px 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#444444;"><span style="color:#57BDB6;font-weight:700;margin-right:8px;">&#10003;</span>Recordatorio <strong>48 horas antes</strong> del primer encuentro</td></tr>
@@ -96,19 +97,19 @@ function buildEmailHtml(nombre) {
               <tr>
                 <td align="center">
                   <a href="https://chat.whatsapp.com/BjEF4Y4el4R1KLhLT5XYmD?mode=gi_t" target="_blank" style="display:inline-block;background:#865273;color:#ffffff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:14px;text-decoration:none;padding:16px 40px;border-radius:6px;letter-spacing:0.5px;">
-                    &#128172;&nbsp; UNIRME AL GRUPO DE ENTRENAMIENTO
+                    UNIRME AL GRUPO DE ENTRENAMIENTO
                   </a>
                 </td>
               </tr>
             </table>
             <hr style="border:none;border-top:1px solid #eeebe8;margin:32px 0 28px;">
-            <h3 style="margin:0 0 10px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight:800;color:#111111;">&#128172; &iquest;Ten&eacute;s alguna duda antes de empezar?</h3>
+            <h3 style="margin:0 0 10px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight:800;color:#111111;">&iquest;Ten&eacute;s alguna duda antes de empezar?</h3>
             <p style="margin:0 0 20px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#444444;line-height:1.75;">Escribile directamente a Eva y te responde ella.</p>
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td align="center">
                   <a href="https://wa.me/message/X2BA2P356X5DG1" target="_blank" style="display:inline-block;background:#ffffff;color:#865273;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;font-size:13px;text-decoration:none;padding:14px 36px;border-radius:6px;letter-spacing:0.5px;border:2px solid #865273;">
-                    &#128172;&nbsp; ESCRIBIRLE A EVA
+                    ESCRIBIRLE A EVA
                   </a>
                 </td>
               </tr>
@@ -134,7 +135,7 @@ function buildEmailHtml(nombre) {
         <tr>
           <td style="background:#111111;padding:18px 40px;text-align:center;">
             <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#666666;">&copy; 2026 Eva Benavidez &middot; evabenavidez.com &middot; C&oacute;rdoba, Argentina</p>
-            <p style="margin:6px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#555555;">Recibiste este mail porque te inscribiste al Entrenamiento en Neuroventa Digital.</p>
+            <p style="margin:6px 0 0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:#555555;">Recibiste este mail porque te inscribiste al ${NOMBRE_PROGRAMA}.</p>
           </td>
         </tr>
       </table>
@@ -149,7 +150,7 @@ async function sendConfirmationEmail(to, nombre) {
   return getResend().emails.send({
     from: 'Eva Benavidez <info@evabenavidez.com>',
     to,
-    subject: '¡Ya sos parte! Tu lugar en Neuroventas está confirmado',
+    subject: '¡Ya sos parte! Tu lugar en el Entrenamiento Neuroventa Digital + IA está confirmado',
     html: buildEmailHtml(nombre),
   });
 }
