@@ -13,8 +13,8 @@ export const HORARIO = '19:00 a 21:00 hs (ARG)';
 // Links de pago de Mercado Pago (preferencias ya integradas con el webhook de confirmación).
 // Se pueden reemplazar sin tocar código con las variables MP_LINK_PROMO / MP_LINK_COMPLETO.
 export const LINKS_PAGO = {
-  promo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-b3365f78-809e-4718-bf33-7eaef3f6bd1d', // PENDIENTE: link nuevo por $54.600 (este cobra $45.500)
-  completo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-0ba1ef8d-8a67-40df-ba12-e25175a55977', // PENDIENTE: link nuevo por $78.000 (este cobra $65.000)
+  promo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-557fe6ec-c6b4-4575-b38b-ebfb1ef38564', // $54.600 (mpago.la/1Pwzpnz)
+  completo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-31f3f03a-1957-4432-a202-37e2dd7ebb0b', // $78.000 (mpago.la/2HwmF1U)
 };
 
 // Fin de la promo: 28/10/2026 23:59:59 ARG (UTC-3) → desde 29/10/2026 00:00 ARG precio completo.
