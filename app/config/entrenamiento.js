@@ -13,16 +13,16 @@ export const HORARIO = '19:00 a 21:00 hs (ARG)';
 // Links de pago de Mercado Pago (preferencias ya integradas con el webhook de confirmación).
 // Se pueden reemplazar sin tocar código con las variables MP_LINK_PROMO / MP_LINK_COMPLETO.
 export const LINKS_PAGO = {
-  promo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-b3365f78-809e-4718-bf33-7eaef3f6bd1d', // $45.500
-  completo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-0ba1ef8d-8a67-40df-ba12-e25175a55977', // $65.000
+  promo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-b3365f78-809e-4718-bf33-7eaef3f6bd1d', // PENDIENTE: link nuevo por $54.600 (este cobra $45.500)
+  completo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-0ba1ef8d-8a67-40df-ba12-e25175a55977', // PENDIENTE: link nuevo por $78.000 (este cobra $65.000)
 };
 
 // Fin de la promo: 28/10/2026 23:59:59 ARG (UTC-3) → desde 29/10/2026 00:00 ARG precio completo.
 export const FIN_PROMO = new Date('2026-10-29T03:00:00Z');
 
 export const PRECIOS = {
-  promo: { total: 45500, cuota: 15167, anterior: 65000 },
-  completo: { total: 65000, cuota: 21667 },
+  promo: { total: 54600, cuota: 18200, anterior: 78000 },
+  completo: { total: 78000, cuota: 26000 },
 };
 
 export const LINKS = {
