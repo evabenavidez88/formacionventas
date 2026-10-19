@@ -5,7 +5,7 @@ import {
   IcoCalendario, IcoReloj, IcoPantalla, IcoCheck, IcoX, IcoChevron, IcoEscudo, IcoTarjeta,
   IcoInstagram, IcoLinkedin, IcoWhatsapp,
 } from './components/Iconos';
-import { FECHAS_TEXTO, HORARIO, FIN_PROMO, LINKS, precioVigente, formatoPesos } from './config/entrenamiento';
+import { FECHAS_TEXTO, HORARIO, CONSULTAS, CONSULTAS_HORARIO, FIN_PROMO, LINKS, precioVigente, formatoPesos } from './config/entrenamiento';
 
 // El precio se decide en cada visita según la fecha (no queda fijo en el build).
 export const dynamic = 'force-dynamic';
@@ -22,6 +22,14 @@ const DIAS = [
   { dia: 'Día 1', eje: 'Orden', sub: 'Tu proceso de venta, paso a paso.', txt: 'Armás tu proceso para que cada conversación parta del mismo lugar y no de cero.', ia: 'la usás para mapear tu proceso e integrar WhatsApp, Instagram y tus otros canales en un mismo camino.' },
   { dia: 'Día 2', eje: 'Foco', sub: 'Lo que mueve la decisión de tu cliente.', txt: 'Entendés qué siente y qué necesita tu cliente para decidir, y dejás de justificar el precio para comunicar valor.', ia: 'la usás para trabajar tu propuesta de valor y tus mensajes con tu voz, pensando en tu cliente.' },
   { dia: 'Día 3', eje: 'Seguimiento', sub: 'Sostener la conversación hasta el cierre.', txt: 'Practicás cómo retomar una conversación que se enfrió, responder objeciones y cerrar con método, no con presión.', ia: 'la usás para organizar tus seguimientos y no soltar ninguna conversación.' },
+];
+
+// Tu manual, clase a clase: qué capítulo armás en cada encuentro.
+const MANUAL = [
+  { cuando: 'Encuentro 1 · Orden', cap: 'Capítulo 1', titulo: 'El mapa de tu proceso de venta.' },
+  { cuando: 'Encuentro 2 · Foco', cap: 'Capítulo 2', titulo: 'Tu speech de valor: precio y objeciones de tu rubro.' },
+  { cuando: 'Encuentro 3 · Seguimiento', cap: 'Capítulo 3', titulo: 'Tu sistema de seguimiento y cierre, con herramientas de IA.' },
+  { cuando: 'Consultas · 12 y 19/11', cap: 'Ajustes finales', titulo: 'Revisamos tus casos reales y armás tu plan de acciones de mejora.' },
 ];
 
 const ANTES = [
@@ -48,19 +56,19 @@ const TESTIMONIOS = [
 ];
 
 const INCLUYE = [
+  { img: 'nf2-9.png', t: 'Tu Manual de Neuroventa Digital, personalizado a tu modelo de negocio y co-creado clase a clase.' },
   { img: 'nf2-8.png', t: '3 encuentros en vivo (6 horas), con grabaciones.' },
-  { img: 'nf2-9.png', t: 'Ebook de trabajo con el paso a paso de cada eje.' },
+  { img: 'nf2-11.png', t: '2 clases de consulta en vivo de 60 min (jueves 12 y 19/11) para co-crear sobre tus casos reales.' },
   { img: 'nf2-10.png', t: 'Guiones, checklists y plantillas de respuesta para WhatsApp e Instagram.' },
-  { img: 'nf2-11.png', t: '2 o 3 casos reales trabajados en vivo.' },
   { img: 'nf2-12.png', t: 'Kit de IA para Neuroventa: aplicá el método con herramientas de IA gratuitas.' },
 ];
 
 const FAQ = [
   ['¿Necesito saber usar IA o ser bueno con la tecnología?', 'No. Lo primero es el método; la IA se suma después y la trabajamos desde lo básico.'],
   ['¿Qué herramientas de IA usamos? ¿Tienen costo?', 'Herramientas de IA gratuitas y las que ya uses. No tienen costo.'],
-  ['¿Sirve para mi rubro?', 'Sí, si vendés por WhatsApp o redes, ya sea un servicio o un producto. Trabajás el método sobre tu propio negocio.'],
-  ['¿Y si no puedo estar en vivo algún día?', 'Tenés acceso a las grabaciones de los tres encuentros.'],
-  ['¿Cuánto tiempo necesito para aplicarlo?', 'Son 3 encuentros de 2 horas, y lo empezás a aplicar en tus conversaciones desde el primer día.'],
+  ['¿Sirve para mi rubro?', 'Sí, si vendés por WhatsApp o redes, ya sea un servicio o un producto. Tu manual se arma sobre tu propio negocio: tu proceso, tus precios y las objeciones de tu rubro.'],
+  ['¿Y si no tengo tiempo?', 'Son 3 encuentros de 2 horas y 2 consultas de 60 minutos. Cada capítulo de tu manual se arma en clase, así que no te queda tarea pendiente para después. Si un día no podés estar en vivo, tenés las grabaciones.'],
+  ['¿Qué son las clases de consulta?', `Son 2 encuentros en vivo de 60 minutos, los jueves 12 y 19/11 (${CONSULTAS_HORARIO}). Traés tus casos reales y ajustamos juntos tu manual y tu plan de acciones de mejora.`],
   ['¿Cómo es el pago?', 'Con link de pago en 3 cuotas sin interés o por transferencia. Completás tus datos y pagás en el siguiente paso.'],
   ['¿Tiene garantía?', 'Sí. Si dentro de los 15 días desde el primer encuentro sentís que no es para vos, te devolvemos el 80% de tu inversión.'],
 ];
@@ -91,11 +99,12 @@ export default function Home() {
         <div className="wrap hero-grid">
           <div>
             <span className="kicker">Entrenamiento · Neuroventa Digital + IA · Online en vivo</span>
-            <h1>Te faltan ventas por no tener un método para WhatsApp y redes.</h1>
-            <p className="lead">Aprendé mi método para ordenar tus conversaciones de venta y a usar la IA como aliada para diseñar tu proceso e integrar tus canales, sin perder lo humano.</p>
+            <h1>Salís con tu Manual de Neuroventa Digital: tu proceso, tu speech y tus herramientas de IA para vender por WhatsApp y redes, diseñados sobre tu negocio real.</h1>
+            <p className="lead">Lo armamos juntos, clase a clase, con mi método para ordenar tus conversaciones de venta y la IA como aliada, sin perder lo humano.</p>
             <ul className="meta-list">
               <li><IcoCalendario /><span>{FECHAS_TEXTO}</span></li>
               <li><IcoReloj /><span>{HORARIO}</span></li>
+              <li><IcoCalendario /><span>+ Consultas: {CONSULTAS} ({CONSULTAS_HORARIO})</span></li>
               <li><IcoPantalla /><span>Online en vivo</span></li>
             </ul>
             <div className="hero-ctas">
@@ -154,6 +163,25 @@ export default function Home() {
             ))}
           </div>
           <p className="process-close">Salís con las tres dimensiones trabajadas sobre tu propio negocio, no en teoría.</p>
+          <div className="centro"><Boton /></div>
+        </div>
+      </section>
+
+      {/* 4b · TU MANUAL, CLASE A CLASE */}
+      <section className="manual">
+        <div className="wrap">
+          <h2>Tu manual, clase a clase</h2>
+          <p className="subhead">En cada encuentro armás un capítulo, aplicado a tu negocio.</p>
+          <div className="manual-grid">
+            {MANUAL.map((m) => (
+              <div className="manual-card" key={m.cuando}>
+                <div className="day">{m.cuando}</div>
+                <div className="manual-cap">{m.cap}</div>
+                <p>{m.titulo}</p>
+              </div>
+            ))}
+          </div>
+          <div className="callout">No te llevás apuntes, te llevás tu <span className="accent">manual</span>.</div>
           <div className="centro"><Boton /></div>
         </div>
       </section>
@@ -269,12 +297,14 @@ export default function Home() {
                 <li><IcoEscudo /><span>Garantía de 15 días: si dentro de los 15 días desde el primer encuentro sentís que no es para vos, te devolvemos el 80% de tu inversión.</span></li>
               </ul>
               <ul className="price-list">
+                <li>Tu Manual de Neuroventa Digital</li>
                 <li>3 encuentros en vivo</li>
-                <li>Material y herramientas</li>
-                <li>Acompañamiento y práctica</li>
+                <li>2 clases de consulta</li>
+                <li>Kit de IA y plantillas</li>
                 <li>Grabaciones</li>
               </ul>
               <p className="price-fechas"><IcoCalendario width={16} height={16} /> {FECHAS_TEXTO} · {HORARIO}</p>
+              <p className="price-fechas"><IcoCalendario width={16} height={16} /> Consultas: {CONSULTAS} · {CONSULTAS_HORARIO}</p>
             </div>
             <div className="form-card">
               <FormInscripcion valor={precio.total} />

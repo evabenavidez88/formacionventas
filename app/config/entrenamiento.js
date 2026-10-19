@@ -9,20 +9,23 @@ export const SITIO = 'https://neuroformacion.evabenavidez.com';
 export const FECHAS = 'Martes 3, miércoles 4 y jueves 5 de noviembre';
 export const FECHAS_TEXTO = FECHAS || '[EVA ACTUALIZA]';
 export const HORARIO = '19:00 a 21:00 hs (ARG)';
+// Clases de consulta en vivo (60 min) para co-crear el manual sobre casos reales.
+export const CONSULTAS = 'Jueves 12 y 19 de noviembre';
+export const CONSULTAS_HORARIO = 'horario a confirmar';
 
 // Links de pago de Mercado Pago (preferencias ya integradas con el webhook de confirmación).
 // Se pueden reemplazar sin tocar código con las variables MP_LINK_PROMO / MP_LINK_COMPLETO.
 export const LINKS_PAGO = {
-  promo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-557fe6ec-c6b4-4575-b38b-ebfb1ef38564', // $54.600 (mpago.la/1Pwzpnz)
-  completo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-31f3f03a-1957-4432-a202-37e2dd7ebb0b', // $78.000 (mpago.la/2HwmF1U)
+  promo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-557fe6ec-c6b4-4575-b38b-ebfb1ef38564', // PENDIENTE: link nuevo por $62.300 (este cobra $54.600)
+  completo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-31f3f03a-1957-4432-a202-37e2dd7ebb0b', // PENDIENTE: link nuevo por $89.000 (este cobra $78.000)
 };
 
 // Fin de la promo: 28/10/2026 23:59:59 ARG (UTC-3) → desde 29/10/2026 00:00 ARG precio completo.
 export const FIN_PROMO = new Date('2026-10-29T03:00:00Z');
 
 export const PRECIOS = {
-  promo: { total: 54600, cuota: 18200, anterior: 78000 },
-  completo: { total: 78000, cuota: 26000 },
+  promo: { total: 62300, cuota: 20767, anterior: 89000 },
+  completo: { total: 89000, cuota: 29667 },
 };
 
 export const LINKS = {

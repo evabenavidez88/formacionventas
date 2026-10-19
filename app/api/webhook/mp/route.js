@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 import { Pool } from 'pg';
-import { FECHAS, HORARIO, NOMBRE_PROGRAMA } from '../../../config/entrenamiento';
+import { FECHAS, HORARIO, CONSULTAS, CONSULTAS_HORARIO, NOMBRE_PROGRAMA } from '../../../config/entrenamiento';
 
 let pool = null;
 function getPool() {
@@ -80,6 +80,7 @@ function buildEmailHtml(nombre) {
                   <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>${FECHAS}</strong></p>
                   <p style="margin:0 0 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>${HORARIO}</strong> &mdash; 2 horas por encuentro</p>
                   <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>100% online en vivo</strong></p>
+                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">+ Clases de consulta: <strong>${CONSULTAS}</strong> (${CONSULTAS_HORARIO})</p>
                 </td>
               </tr>
             </table>` : ''}
