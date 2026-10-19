@@ -15,7 +15,7 @@ const TE_PASA = [
   { img: 'nf2-4.png', t: <>Te preguntan el precio por WhatsApp o redes y <strong>terminás escribiendo un párrafo entero para justificarlo.</strong></> },
   { img: 'nf2-5.png', t: <>Tenés el Instagram lleno de consultas, pero <strong>no sabés cuáles convertir en clientes reales.</strong></> },
   { img: 'nf2-6.png', t: <>Sabés vender cara a cara, pero <strong>por chat no sabés cómo sostener la conversación.</strong></> },
-  { img: 'icono-canales.png', t: <>Probaste usar ChatGPT, pero te devuelve respuestas genéricas y <strong>tus canales siguen sin un proceso.</strong></> },
+  { img: 'icono-ia.png', t: <>Probaste usar la IA, pero te devuelve respuestas genéricas y <strong>tus canales siguen sin un proceso.</strong></> },
 ];
 
 const DIAS = [

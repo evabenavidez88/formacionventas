@@ -11,13 +11,14 @@ export const FECHAS_TEXTO = FECHAS || '[EVA ACTUALIZA]';
 export const HORARIO = '19:00 a 21:00 hs (ARG)';
 // Clases de consulta en vivo (60 min) para co-crear el manual sobre casos reales.
 export const CONSULTAS = 'Jueves 12 y 19 de noviembre';
-export const CONSULTAS_HORARIO = 'horario a confirmar';
+export const CONSULTAS_HORARIO = '18:30 a 19:30 hs (ARG)';
 
-// Links de pago de Mercado Pago (preferencias ya integradas con el webhook de confirmación).
+// Links de pago de Mercado Pago. Usar SIEMPRE el link corto (mpago.la): cada visita genera
+// una preferencia nueva. El link largo con pref_id vence a las pocas horas.
 // Se pueden reemplazar sin tocar código con las variables MP_LINK_PROMO / MP_LINK_COMPLETO.
 export const LINKS_PAGO = {
-  promo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-557fe6ec-c6b4-4575-b38b-ebfb1ef38564', // PENDIENTE: link nuevo por $62.300 (este cobra $54.600)
-  completo: 'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=223667094-31f3f03a-1957-4432-a202-37e2dd7ebb0b', // PENDIENTE: link nuevo por $89.000 (este cobra $78.000)
+  promo: 'https://mpago.la/1Pwzpnz', // $62.300 · vence 6/11
+  completo: 'https://mpago.la/2HwmF1U', // $89.000 · vence 6/11
 };
 
 // Fin de la promo: 28/10/2026 23:59:59 ARG (UTC-3) → desde 29/10/2026 00:00 ARG precio completo.

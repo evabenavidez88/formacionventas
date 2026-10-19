@@ -86,7 +86,7 @@ function buildAbandonedHtml(nombre) {
                 <td style="padding:18px 20px;">
                   <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>${FECHAS}</strong></p>
                   <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;"><strong>${HORARIO}</strong> &middot; Online en vivo</p>
-                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.65);">+ Clases de consulta: <strong>${CONSULTAS}</strong> (${CONSULTAS_HORARIO})</p>
+                  <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#111111;">+ Clases de consulta: <strong>${CONSULTAS}</strong> (${CONSULTAS_HORARIO})</p>
                 </td>
               </tr>
             </table>` : ''}
