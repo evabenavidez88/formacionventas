@@ -99,8 +99,8 @@ export default function Home() {
         <div className="wrap hero-grid">
           <div>
             <span className="kicker">Entrenamiento · Neuroventa Digital + IA · Online en vivo</span>
-            <h1>Salís con tu Manual de Neuroventa Digital: tu proceso, tu speech y tus herramientas de IA para vender por WhatsApp y redes, diseñados sobre tu negocio real.</h1>
-            <p className="lead">Lo armamos juntos, clase a clase, con mi método para ordenar tus conversaciones de venta y la IA como aliada, sin perder lo humano.</p>
+            <h1>Te faltan ventas por no tener un método para WhatsApp y redes.</h1>
+            <p className="lead">Aprendé mi método para ordenar tus conversaciones de venta y a usar la IA como aliada para diseñar tu proceso e integrar tus canales, sin perder lo humano.</p>
             <ul className="meta-list">
               <li><IcoCalendario /><span>{FECHAS_TEXTO}</span></li>
               <li><IcoReloj /><span>{HORARIO}</span></li>
